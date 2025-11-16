@@ -17,4 +17,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do something
-        run: echo "Running job triggered manually on ${{ github.event.inputs.environment }}!"
+        run: echo "Running job triggered manually on ${{ inputs.environment }}!"
