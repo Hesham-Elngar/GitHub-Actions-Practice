@@ -5,7 +5,12 @@
   "scripts": {
     "test": "jest"
   },
+  "jest": {
+  "testMatch": ["**/src/test.js"]
+},
   "devDependencies": {
     "jest": "^29.0.0"
   }
 }
+
+
