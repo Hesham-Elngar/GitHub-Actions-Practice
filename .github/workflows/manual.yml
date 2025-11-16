@@ -1,10 +1,18 @@
 on:
     workflow_dispatch:
-
+        inputs:
+            environment:
+                required: true
+                type: choice
+                options:
+                  - dev
+                  - staging
+                  - production
+        
 jobs:
   run-manually:
     runs-on: ubuntu-latest
     steps:
         - name: run manually
-          run: echo "App runs Manually"
+          run: echo "App runs on ${{ inputs.environment }}"
 
