@@ -9,7 +9,7 @@ on:
     paths:
       - "src/**" 
       - "package.json" 
-      - "./"
+      - ".github/workflows/**"
   pull_request:
     branches:
       - main
