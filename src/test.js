@@ -1,6 +1,5 @@
 // test.js
 
-
 const { sum, isEven } = require('./app');
 
 describe("App.js tests", () => {
