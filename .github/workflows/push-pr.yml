@@ -14,7 +14,7 @@ on:
     branches:
       - main
       - "feature/**"
-      - dev
+      - test
 jobs:
   test:
     runs-on: ubuntu-latest

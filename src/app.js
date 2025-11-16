@@ -1,5 +1,7 @@
 // app.js
 
+console.log("Hello Hesham");
+
 function sum(a, b) {
   return a + b;
 }
