@@ -1,0 +1,16 @@
+name: set up first workflow
+
+on:
+  push: 
+    branches:
+      - main
+        master
+        dev
+
+jobs:
+  first-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print hello message
+        run: echo "Hello World!"
+      
