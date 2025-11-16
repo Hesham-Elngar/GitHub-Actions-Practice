@@ -1,0 +1,11 @@
+on:
+  shedule:
+    - cron: 0 * * * *
+
+jobs:
+  daily-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: print message
+        run : echo "Running the sheduled task"
