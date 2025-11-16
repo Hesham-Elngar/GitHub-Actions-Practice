@@ -18,8 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: checkout
-        uses: actions/checkout@v6-beta
+        uses: actions/checkout@v4
       
+      - name: install dependencies
+        run: npm install
+
       - name: test code
         run: npm test  
 
