@@ -7,7 +7,8 @@ on:
       - "feature/**"
       - dev
     paths:
-      - "src/**"  
+      - "src/**" 
+      - "./**" 
   pull_request:
     branches:
       - main
