@@ -1,19 +1,29 @@
+name: Manual Trigger Example
+
 on:
-    workflow_dispatch:
-        inputs:
-            environment:
-                description: "Select environment"
-                required: true
-                type: choice
-                options:
-                  - dev
-                  - staging
-                  - production
-        
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment"
+        type: choice
+        required: true
+        options:
+          - dev
+          - staging
+          - production
+      debug:
+        description: "Enable debug mode?"
+        type: boolean
+        default: false
+
 jobs:
   run-manually:
     runs-on: ubuntu-latest
     steps:
-        - name: run manually
-          run: echo "App runs on ${{ github.event.inputs.environment }}"
+      - name: Print inputs
+        run: |
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Debug mode: ${{ github.event.inputs.debug }}"
 
+      - name: Do something
+        run: echo "Running job triggered manually!"
