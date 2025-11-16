@@ -13,4 +13,10 @@ jobs:
     steps:
       - name: print hello message
         run: echo "Hello World!"
+
+      - name: checkout
+        uses: actions/checkout@v6-beta
+
+      - name: validate  
+        run: ls -la
       
