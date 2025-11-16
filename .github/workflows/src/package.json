@@ -1,0 +1,11 @@
+{
+  "name": "ci-test-example",
+  "version": "1.0.0",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
