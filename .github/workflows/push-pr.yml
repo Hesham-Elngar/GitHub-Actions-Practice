@@ -1,0 +1,26 @@
+name: push-pr 
+
+on: 
+  push: 
+    branches:
+      - main
+      - "feature/**"
+      - dev
+    paths:
+      - "src/**"  
+  pull_request:
+    branches:
+      - main
+      - "feature/**"
+      - dev
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout
+        uses: actions/checkout@v6-beta
+      
+      - name: test code
+        run: npm test  
+
+  
