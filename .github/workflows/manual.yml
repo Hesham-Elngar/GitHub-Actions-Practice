@@ -2,6 +2,7 @@ on:
     workflow_dispatch:
         inputs:
             environment:
+                description: "Select environment"
                 required: true
                 type: choice
                 options:
@@ -14,5 +15,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: run manually
-          run: echo "App runs on ${{ inputs.environment }}"
+          run: echo "App runs on ${{ github.event.inputs.environment }}"
 
