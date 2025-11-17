@@ -1,0 +1,89 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches:
+            - main
+            - feature/**
+    pull_request:
+        branches:
+            - main
+            - dev          
+
+jobs:
+    build:  
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build project
+              run: npm run build
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run tests
+              run: npm test  
+    containerize:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Build Docker image
+              run: |
+                  docker build -t my-app:latest .
+
+            - name: Push Docker image
+              run: |
+                  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                  docker tag my-app:latest my-repo/my-app:latest
+                  docker push my-repo/my-app:latest            
+    deploy:
+        runs-on: ubuntu-latest
+        needs: containerize
+        env:
+            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
+        steps:
+            - name: Deploy to Production
+              run: |
+                  echo "Deploying application to production server..."
+                  # Deployment commands go here 
+                  ssh user@production-server 'docker pull my-repo/my-app:latest && docker run -d -p 80:80 my-repo/my-app:latest'           
+              
+          
+    notify:
+        runs-on: ubuntu-latest      
+        needs: deploy
+        steps:
+            - name: Send notification
+              run: |
+                  echo "Deployment completed successfully!"
+            # Notification commands go here (e.g., send email or Slack message)
+        
+
+
+
+
