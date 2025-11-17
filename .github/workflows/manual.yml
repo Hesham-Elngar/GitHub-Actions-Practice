@@ -1,19 +1,20 @@
+name: Manual Trigger Example
+
 on:
-    workflow_dispatch:
-        inputs:
-            environment:
-                description: "Select environment"
-                required: true
-                type: choice
-                options:
-                  - dev
-                  - staging
-                  - production
-        
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment"
+        type: choice
+        required: true
+        options:
+          - dev
+          - staging
+          - production
+
 jobs:
   run-manually:
     runs-on: ubuntu-latest
     steps:
-        - name: run manually
-          run: echo "App runs on ${{ github.event.inputs.environment }}"
-
+      - name: Do something
+        run: echo "Running job triggered manually on ${{ inputs.environment }}!"
