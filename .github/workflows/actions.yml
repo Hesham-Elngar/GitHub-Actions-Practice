@@ -16,6 +16,19 @@ jobs:
       
       - name: another step
         run: echo "This is another step in the job out docker container"
+  Dockerized_job:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+    steps:
+      - name: first step in dockerized job
+        run: echo "This is the first step in the job that runs inside a docker container"
+
+      - name: second step in dockerized job
+        run: echo "This is the second step in the job that runs inside a docker container"   
+      
+
+
 
            
           
