@@ -9,7 +9,7 @@ jobs:
       - name: say Hello
         uses: Robs-Organisation/Robs-action@v1.7
         with: 
-          team: DevopsTeam4
+          who-to-greet: DevopsTeam4
           
   
   
