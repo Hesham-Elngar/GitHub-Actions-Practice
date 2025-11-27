@@ -1,4 +1,4 @@
-name: trying built-in actions
+name: trying using docker actiion
 
 on:
   workflow_dispatch
@@ -6,10 +6,18 @@ jobs:
   job_1:
     runs-on: ubuntu-latest
     steps:
-      - name: say Hello
-        uses: Robs-Organisation/Robs-action@v1.7
+      - name: first step
+        run: echo "This is the first step in the job runs on ubuntu not in docker container"
+
+      - name: building docker image
+        uses: docker://alpine:latest
         with: 
-          who-to-greet: DevopsTeam4
+          args: echo "Hello from Docker action"
+      
+      - name: another step
+        run: echo "This is another step in the job out docker container"
+
+           
           
   
   
